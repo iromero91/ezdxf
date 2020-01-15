@@ -6,7 +6,7 @@ import math
 import logging
 
 from ezdxf.lldxf import const
-from ezdxf.lldxf.const import DXFValueError, DXFVersionError, DXF2000, DXF2007
+from ezdxf.lldxf.const import DXFValueError, DXFVersionError, DXF14, DXF2000, DXF2007
 from ezdxf.math import Vector
 from ezdxf.math import bspline_control_frame, bspline_control_frame_approx
 from ezdxf.render.arrows import ARROWS
@@ -419,7 +419,7 @@ class CreatorInterface:
         ignored like (x, y, 0, 0, bulge).
 
         The :class:`~ezdxf.entities.LWPolyline` is defined as a single DXF entity and needs less disk space than a
-        :class:`~ezdxf.entities.Polyline` entity. (requires DXF R2000)
+        :class:`~ezdxf.entities.Polyline` entity. (requires DXF R14)
 
         Format codes:
 
@@ -436,8 +436,8 @@ class CreatorInterface:
             dxfattribs: additional DXF attributes
 
         """
-        if self.dxfversion < DXF2000:
-            raise DXFVersionError('LWPOLYLINE requires DXF R2000')
+        if self.dxfversion < DXF14:
+            raise DXFVersionError('LWPOLYLINE requires DXF R14')
         dxfattribs = dict(dxfattribs or {})
         closed = dxfattribs.pop('closed', False)
         lwpolyline = self.new_entity('LWPOLYLINE', dxfattribs)  # type: LWPolyline

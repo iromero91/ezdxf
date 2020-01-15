@@ -7,7 +7,7 @@ import copy
 from contextlib import contextmanager
 from ezdxf.math import Vector
 from ezdxf.lldxf.attributes import DXFAttr, DXFAttributes, DefSubclass, XType
-from ezdxf.lldxf.const import SUBCLASS_MARKER, DXF2000, LWPOLYLINE_CLOSED, LWPOLYLINE_PLINEGEN
+from ezdxf.lldxf.const import SUBCLASS_MARKER, DXF14, LWPOLYLINE_CLOSED, LWPOLYLINE_PLINEGEN
 from ezdxf.lldxf.tags import Tags
 from ezdxf.lldxf.types import DXFTag, DXFVertex
 from ezdxf.lldxf.packedtags import VertexArray
@@ -47,7 +47,7 @@ class LWPolyline(DXFGraphic):
     """ DXF LWPOLYLINE entity """
     DXFTYPE = 'LWPOLYLINE'
     DXFATTRIBS = DXFAttributes(base_class, acdb_entity, acdb_lwpolyline)
-    MIN_DXF_VERSION_FOR_EXPORT = DXF2000
+    MIN_DXF_VERSION_FOR_EXPORT = DXF14
 
     def __init__(self, doc: 'Drawing' = None):
         super().__init__(doc)
